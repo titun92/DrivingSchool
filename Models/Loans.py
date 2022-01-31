@@ -7,3 +7,6 @@ class Loans:
 
     def __repr__(self):
         return f"\n{str(self.custid)},{str(self.bookid)},{str(self.loandate)},{str(self.returndate)}"
+
+    # def __str__(self):
+    #     return f"\n{str(self.custid)},{str(self.bookid)},{str(self.loandate)},{str(self.returndate)}"

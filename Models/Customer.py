@@ -7,3 +7,6 @@ class Customer:
 
     def __repr__(self):
         return f"\n{str(self.id)},{self.name},{self.city},{str(self.age)}"
+
+    # def __str__(self):
+    #     return f"\n{str(self.id)},{self.name},{self.city},{str(self.age)}"

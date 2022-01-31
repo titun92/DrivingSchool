@@ -9,11 +9,12 @@ def GetCustomers():
     f = open('Data//Customers.csv', 'r')
     customerlist = []
     for line in f.readlines()[1:]:
-        row = line.split(',')
+        row = line.replace('\n', '').split(',')
         tempcustomer = Customer(row[0],row[1],row[2],row[3])
         customerlist.append(tempcustomer)
-        f.close()
+    f.close()
     return customerlist
+
 
 def PrintGetCustomers(customerlist):
     for customer in customerlist:
@@ -54,22 +55,24 @@ def FindCustomerByID2(id,name):
 
 
 def RemoveCustomerByName(name):
-    f = open("Data//Customers.csv", "r")
-    lines = f.readlines()
+    customerlist = GetCustomers()
+    headers = 'id,name,city,age'
+    g = open('Data//Customers.csv', 'w')
+    g.write(headers)
+    g.close()
+    f = open('Data//Customers.csv', 'a')
+    count = 0
     flag = False
-    for index,line in enumerate(lines):
-        if name in line:
-            print("Successfully Removed",name,"from the Customer list.\n")
-            del lines[index]
+    for cust in customerlist:
+        if cust.name == name:
             flag = True
+            print(str(cust.name),'was removed\n')
+        else:
+            f.write('\n'f'{cust.id},{cust.name},{cust.city},{cust.age}')
+        count +=1
     if not flag:
-        print(name,"Not in the customer list,please try again.\n")
+        print(name,"not in the customer list.\n")
     f.close()
-
-    new_file = open("Data//Customers.csv", "w+")
-    for line in lines:
-        new_file.write(line)
-    new_file.close()
 
 # PrintGetCustomers(GetCustomers())
 

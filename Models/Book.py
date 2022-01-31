@@ -8,3 +8,6 @@ class Book:
 
     def __repr__(self):
         return f"\n{str(self.id)},{self.name},{self.author},{str(self.date)},{self.type}"
+
+    # def __str__(self):
+    #     return f"\n{str(self.id)},{self.name},{self.author},{str(self.date)},{self.type}"

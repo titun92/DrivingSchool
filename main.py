@@ -59,12 +59,20 @@ while option != 999:
             id = input("please Enter the ID for the Book: \n")
             if id.isnumeric() == True:
                 if FindBookByIDTrue(id) != True:
-                    book = Book(id,input("please Enter the Name of the Book: \n"),
-                                input("please Enter the name of the Author: \n"),
-                                int(input("please Enter the year the book was published: \n")),
-                                int(input("please Enter the book type set  > 1 - up to 10 days, > 2 - up to 5 days, > 3 - up to 2 days. \n")))
-                    AddBook(book)
-                    print("\nSuccessfully added: ", book, "\n")
+                    # book = Book(id,input("please Enter the Name of the Book: \n"),
+                    #             input("please Enter the name of the Author: \n"),
+                    #             int(input("please Enter the year the book was published: \n")),
+                    #             int(input("please Enter the book type set  > 1 - up to 10 days, > 2 - up to 5 days, > 3 - up to 2 days. \n")))
+                    name = input("please Enter the Name of the Book: \n")
+                    author = input("please Enter the name of the Author: \n")
+                    year = int(input("please Enter the year the book was published: \n"))
+                    type = int(input("please Enter the book type set  > 1 - up to 10 days, > 2 - up to 5 days, > 3 - up to 2 days. \n"))
+                    if type == 1 or type == 2 or type == 3:
+                        book = Book(id,name,author,year,type)
+                        AddBook(book)
+                        print("\nSuccessfully added: ", book, "\n")
+                    else:
+                        print("you entered",type,"please insert valid loan type 1 or 2 or 3.\n")
                 else:
                     print("\nThe id", id, "is already in the Book list, please chose other id.\n")
             else:
@@ -101,7 +109,7 @@ while option != 999:
                 bookid = input("Please Enter the Book ID: \n")
                 if FindBookByIDTrue(bookid) == True:
                     if RemoveLoanByName(custid,bookid) != False:
-                        print("\nsuccessfully removed a Loan\n")
+                        print("")
                     else:
                         print("Failed to remove")
                 else:
@@ -146,7 +154,6 @@ while option != 999:
             # print(FindBookByName("harry potter"))
         elif option == 9:
             print("You Chose the Option to Find Book by Name: \n")
-            print("Book ID ,Book Name ,Author Name ,Published ,Loan Type \n ")
             print(FindBookByName(str(input("Please enter a book name: \n"))))
             print("")
 

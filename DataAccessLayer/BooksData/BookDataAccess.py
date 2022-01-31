@@ -9,7 +9,7 @@ def GetBooks():
     f = open('Data//Books.csv', 'r')
     booklist = []
     for line in f.readlines()[1:]:
-        row = line.split(',')
+        row = line.replace('\n', '').split(',')
         tempbook = Book(row[0],row[1],row[2],row[3],row[4])
         booklist.append(tempbook)
         f.close()
@@ -51,19 +51,21 @@ def FindBookByName(name):
         print("Didnt found Book", name, "\n")
 
 def RemoveBookByName(name):
-    f = open("Data//Books.csv", "r")
+    booklist = GetBooks()
+    headers = 'id,name,author,published,type'
+    g = open('Data//Books.csv', 'w')
+    g.write(headers)
+    g.close()
+    f = open('Data//Books.csv', 'a')
+    count = 0
     flag = False
-    lines = f.readlines()
-    for index,line in enumerate(lines):
-        if name in line:
-            print("Successfully Removed",name, "from Book list.\n")
-            del lines[index]
+    for book in booklist:
+        if book.name == name:
             flag = True
+            print(str(book.name),'was removed\n')
+        else:
+            f.write('\n'f'{book.id},{book.name},{book.author},{book.date},{book.type}')
+        count +=1
     if not flag:
-        print(name, "is not in the book list , please try again\n")
+        print(name,"is not in the book list, please try again.\n")
     f.close()
-
-    new_file = open("Data//Books.csv", "w+")
-    for line in lines:
-        new_file.write(line)
-    new_file.close()

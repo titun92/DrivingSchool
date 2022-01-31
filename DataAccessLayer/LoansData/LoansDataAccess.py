@@ -1,4 +1,5 @@
 import csv
+from csv import writer
 from datetime import datetime,timedelta
 from Models.Loans import Loans
 from DataAccessLayer.BooksData.BookDataAccess import ReturnBookNameByID
@@ -6,10 +7,24 @@ from DataAccessLayer.CustomerData.CustomerDataAccess import ReturnCustomerNameBy
 
 def AddLoan(loan,book):
     loan.returndate = MapReturnTime(book.type)
-    print(loan)
-    f = open('Data//loans.csv', 'a')
+    f = open('Data//loans.csv', 'a', newline='')
     f.write(loan.__repr__())
     f.close()
+
+
+# def AddLoan(loan,book):
+#     loan.returndate = MapReturnTime(book.type)
+#     with open('Data//loans.csv', 'a') as f:
+#         writer = csv.writer(f)
+#         writer.writerow(loan)
+
+
+# def AddLoan(loan,book):
+#     loan.returndate = MapReturnTime(book.type)
+#     with open('Data//loans.csv', 'a') as f:
+#         f = writer(f)
+#         f.writerow(loan.__str__())
+
 
 def MapReturnTime(type):
     today = datetime.now()
@@ -26,7 +41,7 @@ def GetLoans():
     f = open('Data//loans.csv', 'r')
     loanlist = []
     for line in f.readlines()[1:]:
-        row = line.split(',')
+        row = line.replace('\n', '').split(',')
         temploan = Loans(row[0],row[1],row[2],row[3])
         loanlist.append(temploan)
         f.close()
@@ -56,38 +71,36 @@ def FindLoanedByIDTrue2(custid,loanlist):
 def PrintLateLoans(loanlist):
     for loan in loanlist:
         if str(loan.returndate) < datetime.now().strftime("%x"):
-            print("\n\nCustomer ID:",loan.custid
-                  ,"Book ID:",loan.bookid,
-                  "Loan Date:",loan.loandate,
-                  "Return Date:",loan.returndate,
-                  "The Customer",ReturnCustomerNameByID(loan.custid),
-                  " is being late returning the book",
-                  ReturnBookNameByID(loan.bookid))
+            print("\n\nThe Customer",ReturnCustomerNameByID(loan.custid),
+                  " is being late returning the book",ReturnBookNameByID(loan.bookid),
+                  "\nCustomer ID:",loan.custid,"Book ID:",loan.bookid,"Loan Date:",
+                  loan.loandate,"Return Date:",loan.returndate)
         # elif str(loan.returndate) < datetime.now().strftime("%x"):
         #     print(loan.returndate, "not late")
         else:
             return "error"
 
 def RemoveLoanByName(custid,bookid):
-    lines = list()
+    loanlist = GetLoans()
+    headers = 'custid,bookid,loandate,returndate'
+    g = open('Data//loans.csv', 'w')
+    g.write(headers)
+    g.close()
+    f = open('Data//loans.csv', 'a')
+    count = 0
     found = False
-    with open('Data//loans.csv', 'r') as readFile:
-        reader = csv.reader(readFile)
-        # writer = csv.writer(new_list, delimiter=',')
-        for row in reader:
-            lines.append(row)
-            if custid in row[0] and bookid in row[1]:
-                lines.remove(row)
-                found = True
-        if not found :
-            return found
-                # print(row[0:2])
-
-
-    with open('Data//loans.csv', 'w', newline='') as writeFile:
-        writer = csv.writer(writeFile)
-        writer.writerows(lines)
+    for loan in loanlist:
+        if loan.custid == custid and loan.bookid == bookid:
+            found = True
+            print(loan.__repr__(),'was removed\n')
+        else:
+            f.write('\n'f'{loan.custid},{loan.bookid},{loan.loandate},{loan.returndate}')
+        count +=1
+    if not found:
         return found
+    f.close()
+
+
 
 
 
