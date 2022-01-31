@@ -62,7 +62,7 @@ while option != 999:
                     book = Book(id,input("please Enter the Name of the Book: \n"),
                                 input("please Enter the name of the Author: \n"),
                                 int(input("please Enter the year the book was published: \n")),
-                                int(input("please Enter the book type set(1 – up to 10 days   2 - up to 5 days  3 - up to 2 days): \n")))
+                                int(input("please Enter the book type set  > 1 - up to 10 days, > 2 - up to 5 days, > 3 - up to 2 days. \n")))
                     AddBook(book)
                     print("\nSuccessfully added: ", book, "\n")
                 else:
