@@ -7,7 +7,7 @@ from DataAccessLayer.CustomerData.CustomerDataAccess import ReturnCustomerNameBy
 def AddLoan(loan,book):
     loan.returndate = MapReturnTime(book.type)
     print(loan)
-    f = open('Data\loans.csv', 'a')
+    f = open('Data//loans.csv', 'a')
     f.write(loan.__repr__())
     f.close()
 
@@ -23,7 +23,7 @@ def MapReturnTime(type):
         return "ERROR"
 
 def GetLoans():
-    f = open('Data\loans.csv', 'r')
+    f = open('Data//loans.csv', 'r')
     loanlist = []
     for line in f.readlines()[1:]:
         row = line.split(',')
@@ -71,7 +71,7 @@ def PrintLateLoans(loanlist):
 def RemoveLoanByName(custid,bookid):
     lines = list()
     found = False
-    with open('Data\loans.csv', 'r') as readFile:
+    with open('Data//loans.csv', 'r') as readFile:
         reader = csv.reader(readFile)
         # writer = csv.writer(new_list, delimiter=',')
         for row in reader:
@@ -84,7 +84,7 @@ def RemoveLoanByName(custid,bookid):
                 # print(row[0:2])
 
 
-    with open('Data\loans.csv', 'w', newline='') as writeFile:
+    with open('Data//loans.csv', 'w', newline='') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(lines)
         return found

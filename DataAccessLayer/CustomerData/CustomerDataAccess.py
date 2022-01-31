@@ -1,12 +1,12 @@
 from Models.Customer import Customer
 
 def AddCustomer(customer):
-    f = open('Data/Customers.csv', 'a')
+    f = open('Data//Customers.csv', 'a')
     f.write(customer.__repr__())
     f.close()
 
 def GetCustomers():
-    f = open('Data/Customers.csv', 'r')
+    f = open('Data//Customers.csv', 'r')
     customerlist = []
     for line in f.readlines()[1:]:
         row = line.split(',')
@@ -54,7 +54,7 @@ def FindCustomerByID2(id,name):
 
 
 def RemoveCustomerByName(name):
-    f = open("Data/Customers.csv", "r")
+    f = open("Data//Customers.csv", "r")
     lines = f.readlines()
     flag = False
     for index,line in enumerate(lines):
@@ -66,7 +66,7 @@ def RemoveCustomerByName(name):
         print(name,"Not in the customer list,please try again.\n")
     f.close()
 
-    new_file = open("Data/Customers.csv", "w+")
+    new_file = open("Data//Customers.csv", "w+")
     for line in lines:
         new_file.write(line)
     new_file.close()

@@ -1,12 +1,12 @@
 from Models.Book import Book
 
 def AddBook(book):
-    f = open('Data\Books.csv', 'a')
+    f = open('Data//Books.csv', 'a')
     f.write(book.__repr__())
     f.close()
 
 def GetBooks():
-    f = open('Data\Books.csv', 'r')
+    f = open('Data//Books.csv', 'r')
     booklist = []
     for line in f.readlines()[1:]:
         row = line.split(',')
@@ -51,7 +51,7 @@ def FindBookByName(name):
         print("Didnt found Book", name, "\n")
 
 def RemoveBookByName(name):
-    f = open("Data\Books.csv", "r")
+    f = open("Data//Books.csv", "r")
     flag = False
     lines = f.readlines()
     for index,line in enumerate(lines):
@@ -63,7 +63,7 @@ def RemoveBookByName(name):
         print(name, "is not in the book list , please try again\n")
     f.close()
 
-    new_file = open("Data\Books.csv", "w+")
+    new_file = open("Data//Books.csv", "w+")
     for line in lines:
         new_file.write(line)
     new_file.close()
