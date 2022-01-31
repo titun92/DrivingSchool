@@ -107,7 +107,6 @@ while option != 999:
             print("\nthe customer", custid, "is not in the list.\n")
 
 
-
         # PrintGetBooks(GetBooks())
     elif option == 5:
         print("You Chose the Option to Display all Books: \n")
