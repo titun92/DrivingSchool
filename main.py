@@ -54,7 +54,7 @@ while option != 999:
         elif option == 2:
             print("You Chose the Option for Adding a new Book,")
             print("The Program is going to need you to know the next values for the customer, please make sure you know them : ")
-            print("id(just a number) , name , author, year published (1999 for example), The book type set the maximum loan time for the book:  1 – up to 10 days  2 – up to 5 days  3 – up to 2 days")
+            print("id(just a number) , name , author, year published (1999 for example), The book type set the maximum loan time for the book: 1 - up to 10 days  2 - up to 5 days  3 - up to 2 days")
             print("just enter a number 1,2 or 3\n")
             id = input("please Enter the ID for the Book: \n")
             if id.isnumeric() == True:
@@ -62,11 +62,11 @@ while option != 999:
                     book = Book(id,input("please Enter the Name of the Book: \n"),
                                 input("please Enter the name of the Author: \n"),
                                 int(input("please Enter the year the book was published: \n")),
-                                int(input("please Enter the book type set(1 – up to 10 days  2 – up to 5 days  3 – up to 2 days): \n")))
+                                int(input("please Enter the book type set(1 – up to 10 days   2 - up to 5 days  3 - up to 2 days): \n")))
                     AddBook(book)
                     print("\nSuccessfully added: ", book, "\n")
                 else:
-                    print("\nThe id", id, "is aleady in the Book list, please chose other id.\n")
+                    print("\nThe id", id, "is already in the Book list, please chose other id.\n")
             else:
                 print(id, "is not Integers only , please enter Integers Only :)\n")
 
