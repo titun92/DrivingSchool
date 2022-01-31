@@ -17,15 +17,24 @@ def GetCustomers():
 
 def PrintGetCustomers(customerlist):
     for customer in customerlist:
-        print("ID:" ,customer.id,"Name:" ,customer.name,"City:" ,customer.city,"Age:",customer.age)
+        print(customer.id, customer.name, customer.city, customer.age)
+        # print("ID:" ,customer.id,"Name:" ,customer.name,"City:" ,customer.city,"Age:",customer.age)
 
 
 def FindCustomerByName(name):
     for customer in GetCustomers():
-        if name == customer.name:
-            print("Successfully print\n")
+        if name == str(customer.name):
+            print("Customer ID, Customer Name, Customer City, Customer Age")
             return customer.__repr__().translate({ord(','): " " })
+    else:
+        print("Didnt found customer",name,"\n")
 
+def ReturnCustomerNameByID(id):
+    for customer in GetCustomers():
+        if id == customer.id:
+            return customer.name.__repr__()
+    else:
+        return False
 
 def FindCustomerByID(id):
     for customer in GetCustomers():
@@ -55,7 +64,6 @@ def RemoveCustomerByName(name):
             flag = True
     if not flag:
         print("No such customer,please try again.\n")
-
     f.close()
 
     new_file = open("Data/Customers.csv", "w+")

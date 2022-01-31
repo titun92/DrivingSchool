@@ -40,9 +40,8 @@ while option != 999:
             customer = Customer(id,input("please Enter the Name of the Customer: \n"),
                             input("please Enter the City of living for the Customer: \n"),
                             input("please Enter the age of the Customer: \n"))
-
             AddCustomer(customer)
-            print("successfully added: ", customer, "\n")
+            print("Successfully Added: ", customer, "\n")
         else:
             print("\nThe id", id, "is aleady in the Customer list, please chose other id.\n")
 
@@ -71,6 +70,7 @@ while option != 999:
 
 
         # add loan
+        # book = Book(1,"2","3","4",5)
         # loan = Loans(1,20,datetime.now().strftime("%x"),0)
         # LoansDataAccess.AddLoan(loan,book)
 
@@ -113,14 +113,15 @@ while option != 999:
         print("You Chose the Option to Display all Books: \n")
         print("Book ID ,Book Name ,Author Name ,Published ,Loan Type \n ")
         PrintGetBooks(GetBooks())
-        print("successfully printed\n")
+        print("\n")
+
     # print customers
     # PrintGetCustomers(GetCustomers())
     elif option == 6:
         print("You Chose the Option to Display all Customers: \n")
         print("Customer ID, Customer Name, City ,Age \n ")
         PrintGetCustomers(GetCustomers())
-        print("successfully printed\n")
+        print("\n")
 
 
         # print loans
@@ -129,13 +130,13 @@ while option != 999:
         print("You Chose the Option to Display all Loans: \n")
         print("CustId ,BookId, Loandate, Returndate \n ")
         PrintGetLoans(GetLoans())
-        print("successfully printed\n")
+        print("\n")
 
     # print late loans
     # PrintLateLoans(GetLoans())
     elif option == 8:
         print("You Chose the Option to Display Late Loans: \n")
-        print("\ntodays date is,",datetime.now().strftime("%x"))
+        print("Todays date is,",datetime.now().strftime("%x"),"\n")
         PrintLateLoans(GetLoans())
         print("")
 
@@ -145,21 +146,17 @@ while option != 999:
         print("You Chose the Option to Find Book by Name: \n")
         print("Book ID ,Book Name ,Author Name ,Published ,Loan Type \n ")
         print(FindBookByName(str(input("Please enter a book name: \n"))))
-        print("successfully printed\n")
 
         # print(FindCustomerByName("name"))
     elif option == 10:
         print("You Chose the Option to Find Customer by name: \n")
-        print("Customer ID, Customer Name, City ,Age \n ")
         print(FindCustomerByName(str(input("Please enter a Customer name: \n"))))
-        print("successfully found\n")
 
     # remove book
     # RemoveBookByName("name")
     elif option == 11:
         print("You Chose the Option to Remove a Book: \n")
         RemoveBookByName(str(input("Please enter a Book name: \n")))
-        print("successfully Removed\n")
 
         # RemoveCustomerByName("name")
     elif option == 12:

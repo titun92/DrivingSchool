@@ -27,6 +27,12 @@ def FindBookByIDTrue(id):
             continue
     return False
 
+def ReturnBookNameByID(id):
+    for book in GetBooks():
+        if id == book.id:
+            return book.name.__repr__()
+    else:
+        return False
 
 def FindBookByID2(id):
     for book in GetBooks():
@@ -38,22 +44,25 @@ def FindBookByID2(id):
 
 def FindBookByName(name):
     for book in GetBooks():
-        if name == book.name:
+        if name == str(book.name):
             return book.__repr__().translate({ord(','): " " })
+    else:
+        print("Didnt found Book", name, "\n")
 
 def RemoveBookByName(name):
     f = open("Data\Books.csv", "r")
-
+    flag = False
     lines = f.readlines()
     for index,line in enumerate(lines):
         if name in line:
-            print("Successfully print\n")
+            print("Successfully Removed Book.\n")
             del lines[index]
+            flag = True
+    if not flag:
+        print("No such Book, Please try again.\n")
     f.close()
 
     new_file = open("Data\Books.csv", "w+")
-
     for line in lines:
         new_file.write(line)
-
     new_file.close()

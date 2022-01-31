@@ -1,6 +1,8 @@
 import csv
 from datetime import datetime,timedelta
 from Models.Loans import Loans
+from DataAccessLayer.BooksData.BookDataAccess import ReturnBookNameByID
+from DataAccessLayer.CustomerData.CustomerDataAccess import ReturnCustomerNameByID
 
 def AddLoan(loan,book):
     loan.returndate = MapReturnTime(book.type)
@@ -62,7 +64,7 @@ def FindLoanedByIDTrue2(custid,loanlist):
 def PrintLateLoans(loanlist):
     for loan in loanlist:
         if str(loan.returndate) < datetime.now().strftime("%x"):
-            print("Customer ID:",loan.custid,"Book ID:",loan.bookid,"Loan Date:",loan.loandate,"Return Date:",loan.returndate,"The Customer is being late returning the book")
+            print("\n\nCustomer ID:",loan.custid,"Book ID:",loan.bookid,"Loan Date:",loan.loandate,"Return Date:",loan.returndate,"The Customer",ReturnCustomerNameByID(loan.custid)," is being late returning the book",ReturnBookNameByID(loan.bookid))
         # elif str(loan.returndate) < datetime.now().strftime("%x"):
         #     print(loan.returndate, "not late")
         else:
