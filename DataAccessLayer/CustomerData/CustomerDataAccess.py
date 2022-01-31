@@ -17,15 +17,15 @@ def GetCustomers():
 
 def PrintGetCustomers(customerlist):
     for customer in customerlist:
-        print(customer.id, customer.name, customer.city, customer.age)
+        print(customer.id,"  -  ",customer.name,"  -  ",customer.city,"  -  ",customer.age)
         # print("ID:" ,customer.id,"Name:" ,customer.name,"City:" ,customer.city,"Age:",customer.age)
 
 
 def FindCustomerByName(name):
     for customer in GetCustomers():
         if name == str(customer.name):
-            print("Customer ID, Customer Name, Customer City, Customer Age")
-            return customer.__repr__().translate({ord(','): " " })
+            print("Customer ID  - Customer Name  - Customer City  -  Customer Age")
+            return customer.__repr__().translate({ord(','): "      -      " })
     else:
         print("Didnt found customer",name,"\n")
 
@@ -59,11 +59,11 @@ def RemoveCustomerByName(name):
     flag = False
     for index,line in enumerate(lines):
         if name in line:
-            print("Successfully Removed Customer\n")
+            print("Successfully Removed",name,"from the Customer list.\n")
             del lines[index]
             flag = True
     if not flag:
-        print("No such customer,please try again.\n")
+        print(name,"Not in the customer list,please try again.\n")
     f.close()
 
     new_file = open("Data/Customers.csv", "w+")
@@ -73,17 +73,3 @@ def RemoveCustomerByName(name):
 
 # PrintGetCustomers(GetCustomers())
 
-# def FindCustomerByID(id):
-#     for customer in GetCustomers():
-#         if id == customer.id:
-#             # print(book.id, type(book.id))
-#             # print(book.type, type(book.type))
-#             # print(book)
-#             # print(type(book))
-#             return Customer(int(customer.id),customer.name,customer.city,customer.age)
-
-
-            # print(book.id, book.name, book.author, book.date, book.type)
-            # print(type(book.id), type(book.name), type(book.author), type(book.date), type(book.type))
-
-# print(FindCustomerByID("1"),type(FindCustomerByID("1")))

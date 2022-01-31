@@ -6,6 +6,7 @@ from DataAccessLayer.CustomerData.CustomerDataAccess import ReturnCustomerNameBy
 
 def AddLoan(loan,book):
     loan.returndate = MapReturnTime(book.type)
+    print(loan)
     f = open('Data\loans.csv', 'a')
     f.write(loan.__repr__())
     f.close()
@@ -21,15 +22,6 @@ def MapReturnTime(type):
     else:
         return "ERROR"
 
-    # match type:
-    #     case 1:
-    #         return (today+timedelta(days=10)).strftime("%x")
-    #     case 2:
-    #         return (today+timedelta(days=5)).strftime("%x")
-    #     case 3:
-    #         return (today+timedelta(days=2)).strftime("%x")
-    #
-
 def GetLoans():
     f = open('Data\loans.csv', 'r')
     loanlist = []
@@ -42,7 +34,7 @@ def GetLoans():
 
 def PrintGetLoans(loanlist):
     for loan in loanlist:
-        print(loan.custid,loan.bookid,loan.loandate,loan.returndate)
+        print(loan.custid,"  -  ",loan.bookid,"  -  ",loan.loandate,"  -  ",loan.returndate)
 
 
 def FindLoanedByIDTrue(bookid,loanlist):
@@ -64,7 +56,13 @@ def FindLoanedByIDTrue2(custid,loanlist):
 def PrintLateLoans(loanlist):
     for loan in loanlist:
         if str(loan.returndate) < datetime.now().strftime("%x"):
-            print("\n\nCustomer ID:",loan.custid,"Book ID:",loan.bookid,"Loan Date:",loan.loandate,"Return Date:",loan.returndate,"The Customer",ReturnCustomerNameByID(loan.custid)," is being late returning the book",ReturnBookNameByID(loan.bookid))
+            print("\n\nCustomer ID:",loan.custid
+                  ,"Book ID:",loan.bookid,
+                  "Loan Date:",loan.loandate,
+                  "Return Date:",loan.returndate,
+                  "The Customer",ReturnCustomerNameByID(loan.custid),
+                  " is being late returning the book",
+                  ReturnBookNameByID(loan.bookid))
         # elif str(loan.returndate) < datetime.now().strftime("%x"):
         #     print(loan.returndate, "not late")
         else:
