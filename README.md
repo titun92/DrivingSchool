@@ -1,4 +1,4 @@
-# LibraryManager for Driving Lessons for Newbies
+# LibraryManager for lazy 
 My first python Project
 
 Hello and Welcome to my first Python Project, Library Manager.
